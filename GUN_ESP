@@ -1,0 +1,23 @@
+local BoxCreated = false
+
+while true do
+    wait()
+    if game.Workspace:FindFirstChild("GunDrop") then
+        if BoxCreated == false then
+            BoxCreated = true
+            local GunCham = Instance.new("BoxHandleAdornment")
+            
+            GunCham.Name = "GunBoxHandle"
+            GunCham.Parent = game.Workspace.GunDrop
+            GunCham.Color3 = Color3.fromRGB(25, 224, 118)
+            GunCham.Adornee = GunCham.Parent
+            GunCham.AlwaysOnTop = true
+            GunCham.Size = GunCham.Parent.Size
+            GunCham.ZIndex = 10
+
+            wait()
+        end
+    else
+        BoxCreated = false
+    end
+end
