@@ -1,0 +1,135 @@
+local currentpos
+local guncurrentpos
+
+local Notified = false
+local NToggled = false
+
+-- init
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Mayhem/main/venyx"))() --Reuploaded Venyx UI Lib, guy get's free credit.
+local venyx = library.new("Project Zodiac", 5013109572)
+
+-- themes
+local themes = {
+Background = Color3.fromRGB(24, 24, 24),
+Glow = Color3.fromRGB(0, 0, 0),
+Accent = Color3.fromRGB(112, 18, 18),
+LightContrast = Color3.fromRGB(20, 20, 20),
+DarkContrast = Color3.fromRGB(53, 13, 13),  
+TextColor = Color3.fromRGB(255, 255, 255)
+}
+
+-- welcome
+local page = venyx:addPage("Welcome!", 5012544693)
+local section1 = page:addSection("Welcome!")
+
+local guiuser = game.Players.LocalPlayer.Name
+
+section1:addButton("Logged in as, ".. guiuser, function()
+
+end)
+
+section1:addButton("The Zodiac is in Alpha", function()
+
+end)
+
+section1:addButton("All scripts made by Menace#1337", function()
+
+end)
+
+section1:addButton("Load ESP has everything you need", function()
+
+end)
+
+section1:addButton("Version 0.0.1", function()
+
+end)
+
+section1:addKeybind("ToggleKeybind", Enum.KeyCode.P, function()
+print("Activated Keybind")
+venyx:toggle()
+end, function()
+end)
+
+-- universal page
+local page = venyx:addPage("Main", 5012544693)
+local section1 = page:addSection("Teleport Functions")
+local section2 = page:addSection("Features")
+local section3 = page:addSection("Modules")
+
+section1:addButton("Save Location", function()
+    currentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end)
+
+section1:addButton("Load Location", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentpos
+end)
+
+section2:addButton("Load ESP", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Zodiac/main/PLAYER_ESP"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Zodiac/main/GUN_ESP"))()
+end)
+
+section2:addButton("Grab Gun", function()
+    guncurrentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.GunDrop.CFrame
+
+    wait(.1)
+            
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = guncurrentpos
+end)
+
+section2:addToggle("GunDropped Notify", nil, function(value)
+    if value == true then
+        NToggled = true
+        while true do
+            wait()
+            if NToggled == true then
+                if game.Workspace:FindFirstChild("GunDrop") then
+                    if Notified == false then
+                        game.StarterGui:SetCore("SendNotification", {
+                        Title = "Sheriff Dead";
+                        Text =  "The Gun has Dropped";
+                        Duration = 5;
+                        })
+                        
+                        Notified = true
+                        wait()
+                    end
+                else    
+                    Notified = false
+                end
+            end
+        end
+    end
+
+    if value == false then
+        NToggled = false
+    end
+end)
+
+-- Credits page
+local page = venyx:addPage("Credits", 5012544693)
+local section1 = page:addSection("Scripter & UI")
+local section2 = page:addSection("Special Mentions")
+
+section1:addButton("Scripts by Menace#1337", function()
+
+end)
+
+section1:addButton("UI Library used: Venyx", function()
+
+end)
+
+-- Themes
+local theme = venyx:addPage("Theme", 5012544693)
+local colors = theme:addSection("Colors")
+
+for theme, color in pairs(themes) do -- all in one theme changer, i know, im cool
+colors:addColorPicker(theme, color, function(color3)
+venyx:setTheme(theme, color3)
+end)
+end
+
+-- load
+venyx:SelectPage(venyx.pages[1], true) -- no default for more freedom
