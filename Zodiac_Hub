@@ -54,7 +54,6 @@ end)
 local page = venyx:addPage("Main", 5012544693)
 local section1 = page:addSection("Teleport Functions")
 local section2 = page:addSection("Features")
-local section3 = page:addSection("Modules")
 
 section1:addButton("Save Location", function()
     currentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -74,7 +73,7 @@ section2:addButton("Grab Gun", function()
     wait()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.GunDrop.CFrame
 
-    wait(.1)
+    wait(1)
             
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = guncurrentpos
 end)
@@ -106,6 +105,28 @@ section2:addToggle("GunDropped Notify", nil, function(value)
     if value == false then
         NToggled = false
     end
+end)
+
+-- Player Options Page
+local page = venyx:addPage("Player", 5012544693)
+local section1 = page:addSection("Humanoid Values")
+local section2 = page:addSection("Humanoid Options")
+
+section1:addSlider("Walkspeed", 16, 0, 50, function(value)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+section1:addSlider("JumpPower", 16, 0, 50, function(value)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+
+section2:addButton("Noclip [Keybind: V]", function()
+    game:getService("RunService"):BindToRenderStep("",0,function()
+        if not game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid") then return end
+        if game:getService("UserInputService"):IsKeyDown(Enum.KeyCode.V) then
+        game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid"):ChangeState(11)
+        end
+    end)
 end)
 
 -- Credits page
