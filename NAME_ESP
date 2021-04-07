@@ -1,0 +1,113 @@
+--[[
+
+Name ESP for mm2
+  Mady by Meace#1337
+
+]]
+
+local plr = game.Players.LocalPlayer
+local Client = game.Players.LocalPlayer.Name
+local camera = game.Workspace.CurrentCamera
+
+for i, v in pairs(game.Players:GetChildren()) do
+    local NameMarker = Instance.new("BillboardGui")
+    local PlayerName = Instance.new("TextLabel")
+    
+    NameMarker.Name = "NameMarker"
+    NameMarker.Parent = v.Character:WaitForChild("Head")
+    NameMarker.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NameMarker.Active = true
+    NameMarker.AlwaysOnTop = true
+    NameMarker.LightInfluence = 1.000
+    NameMarker.Size = UDim2.new(0, 350, 0, 100)
+    
+    PlayerName.Name = "PlayerName"
+    PlayerName.Parent = NameMarker
+    PlayerName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerName.BackgroundTransparency = 1.000
+    PlayerName.BorderSizePixel = 2
+    PlayerName.Size = UDim2.new(0, 350, 0, 50)
+    PlayerName.Font = Enum.Font.SourceSans
+    PlayerName.Text = v.Name
+    PlayerName.TextSize = 25.000
+    PlayerName.TextStrokeTransparency = 0.500
+    
+        function ESP()
+        local connection
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Name ~= plr.Name  and v.Character.Humanoid.Health > 0 then 
+                local ScreenPos, OnScreen = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                if OnScreen then
+                    if v.Backpack:FindFirstChild("Knife") then
+                        PlayerName.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    elseif v.Character:FindFirstChild("Knife") then
+                        PlayerName.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    elseif v.Backpack:FindFirstChild("Gun") then
+                        PlayerName.TextColor3 = Color3.fromRGB(0, 0, 255)
+                    elseif v.Character:FindFirstChild("Gun") then
+                        PlayerName.TextColor3 = Color3.fromRGB(0, 0, 255)
+                    else 
+                        PlayerName.TextColor3 = Color3.fromRGB(0, 255, 0)
+                    end
+                end
+            else 
+                if game.Players:FindFirstChild(v.Name) == nil then
+                    connection:Disconnect()
+                end
+            end
+        end)
+    end
+    coroutine.wrap(ESP)()
+end
+
+
+game.Players.PlayerAdded:Connect(function(newplr)
+    local NameMarkerN = Instance.new("BillboardGui")
+    local PlayerNameN = Instance.new("TextLabel")
+    
+    NameMarkerN.Name = "NameMarker"
+    NameMarkerN.Parent = newplr.Character:WaitForChild("Head")
+    NameMarkerN.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NameMarkerN.Active = true
+    NameMarkerN.AlwaysOnTop = true
+    NameMarkerN.LightInfluence = 1.000
+    NameMarkerN.Size = UDim2.new(0, 350, 0, 100)
+    
+    PlayerNameN.Name = "PlayerName"
+    PlayerNameN.Parent = NameMarkerN
+    PlayerNameN.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerNameN.BackgroundTransparency = 1.000
+    PlayerNameN.BorderSizePixel = 2
+    PlayerNameN.Size = UDim2.new(0, 350, 0, 50)
+    PlayerNameN.Font = Enum.Font.SourceSans
+    PlayerNameN.Text = v.Name
+    PlayerNameN.TextSize = 25.000
+    PlayerNameN.TextStrokeTransparency = 0.500
+
+    function ESP()
+        local connection
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            if newplr.Character ~= nil and newplr.Character:FindFirstChild("HumanoidRootPart") ~= nil and newplr.Name ~= plr.Name  and newplr.Character.Humanoid.Health > 0 then
+                local ScreenPos, OnScreen = camera:WorldToViewportPoint(newplr.Character.HumanoidRootPart.Position)
+                if OnScreen then
+                    if newplr.Backpack:FindFirstChild("Knife") then
+                        PlayerNameN.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    elseif newplr.Character:FindFirstChild("Knife") then
+                        PlayerNameN.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    elseif newplr.Backpack:FindFirstChild("Gun") then
+                        PlayerNameN.TextColor3 = Color3.fromRGB(0, 0, 255)
+                    elseif newplr.Character:FindFirstChild("Gun") then
+                        PlayerNameN.TextColor3 = Color3.fromRGB(0, 0, 255)
+                    else 
+                        PlayerNameN.TextColor3 = Color3.fromRGB(0, 255, 0)
+                    end
+                end
+            else 
+                if game.Players:FindFirstChild(newplr.Name) == nil then
+                    connection:Disconnect()
+                end
+            end
+        end)
+    end
+    coroutine.wrap(ESP)()
+end)
