@@ -63,20 +63,20 @@ for i, v in pairs(game.Players:GetChildren()) do
                     Bottom.To = Vector2.new(BR.X, BR.Y)
 
                     if v.Backpack:FindFirstChild("Knife") then
-                        Top.Color = Color3.fromRGB(255, 0, 0)
-                        Left.Color = Color3.fromRGB(255, 0, 0)
-                        Bottom.Color = Color3.fromRGB(255, 0, 0)
-                        Right.Color = Color3.fromRGB(255, 0, 0)
+                        Top.Color = Color3.fromRGB(255, 153, 0)
+                        Left.Color = Color3.fromRGB(255, 153, 0)
+                        Bottom.Color = Color3.fromRGB(255, 153, 0)
+                        Right.Color = Color3.fromRGB(255, 153, 0)
                     elseif v.Character:FindFirstChild("Knife") then
                         Top.Color = Color3.fromRGB(255, 0, 0)
                         Left.Color = Color3.fromRGB(255, 0, 0)
                         Bottom.Color = Color3.fromRGB(255, 0, 0)
                         Right.Color = Color3.fromRGB(255, 0, 0)
                     elseif v.Backpack:FindFirstChild("Gun") then
-                        Top.Color = Color3.fromRGB(0, 0, 255)
-                        Left.Color = Color3.fromRGB(0, 0, 255)
-                        Bottom.Color = Color3.fromRGB(0, 0, 255)
-                        Right.Color = Color3.fromRGB(0, 0, 255)
+                        Top.Color = Color3.fromRGB(0, 255, 247)
+                        Left.Color = Color3.fromRGB(0, 255, 247)
+                        Bottom.Color = Color3.fromRGB(0, 255, 247)
+                        Right.Color = Color3.fromRGB(0, 255, 247)
                     elseif v.Character:FindFirstChild("Gun") then
                         Top.Color = Color3.fromRGB(0, 0, 255)
                         Left.Color = Color3.fromRGB(0, 0, 255)
@@ -170,20 +170,20 @@ game.Players.PlayerAdded:Connect(function(newplr)
                     Bottom.To = Vector2.new(BR.X, BR.Y)
 
                     if newplr.Backpack:FindFirstChild("Knife") then
-                        Top.Color = Color3.fromRGB(255, 0, 0)
-                        Left.Color = Color3.fromRGB(255, 0, 0)
-                        Bottom.Color = Color3.fromRGB(255, 0, 0)
-                        Right.Color = Color3.fromRGB(255, 0, 0)
+                        Top.Color = Color3.fromRGB(255, 153, 0)
+                        Left.Color = Color3.fromRGB(255, 153, 0)
+                        Bottom.Color = Color3.fromRGB(255, 153, 0)
+                        Right.Color = Color3.fromRGB(255, 153, 0)
                     elseif newplr.Character:FindFirstChild("Knife") then
                         Top.Color = Color3.fromRGB(255, 0, 0)
                         Left.Color = Color3.fromRGB(255, 0, 0)
                         Bottom.Color = Color3.fromRGB(255, 0, 0)
                         Right.Color = Color3.fromRGB(255, 0, 0)
                     elseif newplr.Backpack:FindFirstChild("Gun") then
-                        Top.Color = Color3.fromRGB(0, 0, 255)
-                        Left.Color = Color3.fromRGB(0, 0, 255)
-                        Bottom.Color = Color3.fromRGB(0, 0, 255)
-                        Right.Color = Color3.fromRGB(0, 0, 255)
+                        Top.Color = Color3.fromRGB(0, 255, 247)
+                        Left.Color = Color3.fromRGB(0, 255, 247)
+                        Bottom.Color = Color3.fromRGB(0, 255, 247)
+                        Right.Color = Color3.fromRGB(0, 255, 247)
                     elseif newplr.Character:FindFirstChild("Gun") then
                         Top.Color = Color3.fromRGB(0, 0, 255)
                         Left.Color = Color3.fromRGB(0, 0, 255)
