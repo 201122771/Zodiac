@@ -116,7 +116,7 @@ section2:addTextbox("Reveal Player Role", Default, function(value, focusLost)
     if focusLost then                    
         if game.Players[value].Backpack:FindFirstChild("Knife") then
             print(value.. " is the Murderer.")
-        elseif game.Players[value].Backpack:FindFirstChild("Gun")
+        elseif game.Players[value].Backpack:FindFirstChild("Gun") then
             print(value.. " is the Sheriff.")
         else
             print(value.. " is Innocent.")
