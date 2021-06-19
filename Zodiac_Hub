@@ -1,3 +1,27 @@
+-- Instances:
+local RobloxAdminPanel = Instance.new("ScreenGui")
+local MainContainer = Instance.new("Frame")
+local InsideContainer = Instance.new("Frame")
+local CheatsButton = Instance.new("TextButton")
+local CheatsPage = Instance.new("Frame")
+local LoadLocationOptions = Instance.new("TextButton")
+local ModeToggle = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local LoadESP = Instance.new("TextButton")
+local GunNotify = Instance.new("TextButton")
+local NotifyToggle = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local GrabGun = Instance.new("TextButton")
+local PlayerButton = Instance.new("TextButton")
+local PlayerPage = Instance.new("Frame")
+local Walkspeed = Instance.new("TextBox")
+local Jumppower = Instance.new("TextBox")
+local Noclip = Instance.new("TextButton")
+local NoclipToggle = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TItle = Instance.new("TextLabel")
+local Frame = Instance.new("Frame")
+
 local currentpos
 local guncurrentpos
 
@@ -5,168 +29,324 @@ local guiuser = game.Players.LocalPlayer.Name
 
 local Notified = false
 local NToggled = false
+local NoclipToggled = false
+local NotifyToggled = false
+local ModeToggled = false
 
--- init
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Mayhem/main/venyx"))() --Reuploaded Venyx UI Lib, guy get's free credit.
-local venyx = library.new("Project Zodiac", 5013109572)
+local UserInputService = game:GetService("UserInputService")
 
--- themes
-local themes = {
-Background = Color3.fromRGB(24, 24, 24),
-Glow = Color3.fromRGB(0, 0, 0),
-Accent = Color3.fromRGB(112, 18, 18),
-LightContrast = Color3.fromRGB(20, 20, 20),
-DarkContrast = Color3.fromRGB(53, 13, 13),  
-TextColor = Color3.fromRGB(255, 255, 255)
-}
+noclip = false
 
--- welcome
-local page = venyx:addPage("Welcome!", 5012544693)
-local section1 = page:addSection("Welcome!")
+--Properties:
 
-local guiuser = game.Players.LocalPlayer.Name
+RobloxAdminPanel.Name = "RobloxAdminPanel"
+RobloxAdminPanel.Parent = game.CoreGui
+RobloxAdminPanel.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-section1:addButton("Logged in as, ".. guiuser, function()
+MainContainer.Name = "MainContainer"
+MainContainer.Parent = RobloxAdminPanel
+MainContainer.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+MainContainer.BorderSizePixel = 0
+MainContainer.ClipsDescendants = true
+MainContainer.Position = UDim2.new(0.422648519, 0, 0.228337243, 0)
+MainContainer.Size = UDim2.new(0, 250,0, 1)
+MainContainer.Active = true
+MainContainer.Draggable = true
 
+InsideContainer.Name = "InsideContainer"
+InsideContainer.Parent = MainContainer
+InsideContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+InsideContainer.BorderSizePixel = 0
+InsideContainer.Position = UDim2.new(0.0560000017, 0, 0.0428134575, 0)
+InsideContainer.Size = UDim2.new(0, 222, 0, 361)
+
+CheatsButton.Name = "CheatsButton"
+CheatsButton.Parent = InsideContainer
+CheatsButton.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+CheatsButton.BorderSizePixel = 0
+CheatsButton.Position = UDim2.new(0.17567566, 0, 0.299168974, 0)
+CheatsButton.Size = UDim2.new(0, 56, 0, 22)
+CheatsButton.Font = Enum.Font.Ubuntu
+CheatsButton.Text = "Cheats"
+CheatsButton.TextColor3 = Color3.fromRGB(178, 178, 178)
+CheatsButton.TextSize = 14.000
+CheatsButton.MouseButton1Down:connect(function()
+	if CheatsPage.Visible == false then
+		CheatsPage.Visible = true
+		PlayerPage.Visible = false
+	end
 end)
 
-section1:addButton("The Zodiac is in Alpha", function()
+CheatsPage.Name = "CheatsPage"
+CheatsPage.Parent = CheatsButton
+CheatsPage.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+CheatsPage.BorderSizePixel = 0
+CheatsPage.Position = UDim2.new(-0.49999997, 0, 1, 0)
+CheatsPage.Size = UDim2.new(0, 200, 0, 222)
+CheatsPage.Visible = true
 
+LoadLocationOptions.Name = "LoadLocationOptions"
+LoadLocationOptions.Parent = CheatsPage
+LoadLocationOptions.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+LoadLocationOptions.BorderSizePixel = 0
+LoadLocationOptions.Position = UDim2.new(0.170000002, 0, 0.0495495535, 0)
+LoadLocationOptions.Size = UDim2.new(0, 131, 0, 34)
+LoadLocationOptions.Font = Enum.Font.Ubuntu
+LoadLocationOptions.Text = "         Save Pos"
+LoadLocationOptions.TextColor3 = Color3.fromRGB(178, 178, 178)
+LoadLocationOptions.TextSize = 14.000
+LoadLocationOptions.TextXAlignment = Enum.TextXAlignment.Left
+LoadLocationOptions.MouseButton1Down:Connect(function()
+	if ModeToggled == false then
+		currentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	else
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentpos
+	end
 end)
 
-section1:addButton("All scripts made by Menace#1337", function()
-
+ModeToggle.Name = "ModeToggle"
+ModeToggle.Parent = LoadLocationOptions
+ModeToggle.BackgroundColor3 = Color3.fromRGB(255, 148, 25)
+ModeToggle.BorderSizePixel = 0
+ModeToggle.Position = UDim2.new(0.748091578, 0, 0.147058964, 0)
+ModeToggle.Size = UDim2.new(0, 24, 0, 23)
+ModeToggle.Font = Enum.Font.SourceSans
+ModeToggle.Text = ""
+ModeToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+ModeToggle.TextSize = 14.000
+ModeToggle.MouseButton1Down:Connect(function()
+	if ModeToggled == true then
+		ModeToggled = false
+		ModeToggle.BackgroundColor3 = Color3.fromRGB(255, 148, 25)
+		LoadLocationOptions.Text = "         Save Pos"
+	else
+		ModeToggled = true
+		ModeToggle.BackgroundColor3 = Color3.fromRGB(33, 255, 40)
+		LoadLocationOptions.Text = "         Load Pos"
+	end
 end)
 
-section1:addButton("Load ESP has everything you need", function()
+UICorner.CornerRadius = UDim.new(0, 5)
+UICorner.Parent = ModeToggle
 
+LoadESP.Name = "LoadESP"
+LoadESP.Parent = CheatsPage
+LoadESP.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+LoadESP.BorderSizePixel = 0
+LoadESP.Position = UDim2.new(0.170000002, 0, 0.522522569, 0)
+LoadESP.Size = UDim2.new(0, 131, 0, 34)
+LoadESP.Font = Enum.Font.Ubuntu
+LoadESP.Text = "Load ESP"
+LoadESP.TextColor3 = Color3.fromRGB(178, 178, 178)
+LoadESP.TextSize = 14.000
+LoadESP.MouseButton1Down:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Zodiac/main/PLAYER_ESP"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Zodiac/main/GUN_ESP"))()
 end)
 
-section1:addButton("Version 0.0.1", function()
+GunNotify.Name = "GunNotify"
+GunNotify.Parent = CheatsPage
+GunNotify.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+GunNotify.BorderSizePixel = 0
+GunNotify.Position = UDim2.new(0.170000002, 0, 0.279279262, 0)
+GunNotify.Size = UDim2.new(0, 131, 0, 34)
+GunNotify.AutoButtonColor = false
+GunNotify.Font = Enum.Font.Ubuntu
+GunNotify.Text = " Gundrop Notify"
+GunNotify.TextColor3 = Color3.fromRGB(178, 178, 178)
+GunNotify.TextSize = 14.000
+GunNotify.TextXAlignment = Enum.TextXAlignment.Left
 
+NotifyToggle.Name = "NotifyToggle"
+NotifyToggle.Parent = GunNotify
+NotifyToggle.BackgroundColor3 = Color3.fromRGB(255, 20, 20)
+NotifyToggle.BorderSizePixel = 0
+NotifyToggle.Position = UDim2.new(0.748091578, 0, 0.147058964, 0)
+NotifyToggle.Size = UDim2.new(0, 24, 0, 23)
+NotifyToggle.Font = Enum.Font.SourceSans
+NotifyToggle.Text = ""
+NotifyToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+NotifyToggle.TextSize = 14.000
+NotifyToggle.MouseButton1Down:Connect(function()
+	if NotifyToggled == false then
+		NotifyToggle.BackgroundColor3 = Color3.fromRGB(33, 255, 40)
+		NotifyToggled = true
+	else
+		NotifyToggle.BackgroundColor3 = Color3.fromRGB(255, 20, 20)
+		NotifyToggled = false
+	end
+
+	if NotifyToggled == true then
+		NToggled = true
+		while true do
+			wait()
+			if NToggled == true then
+				if game.Workspace:FindFirstChild("GunDrop") then
+					if Notified == false then
+						game.StarterGui:SetCore("SendNotification", {
+							Title = "Sheriff Dead";
+							Text =  "The Gun has Dropped";
+							Duration = 5;
+						})
+
+						Notified = true
+						wait()
+					end
+				else    
+					Notified = false
+				end
+			end
+		end
+	end
+
+	if NotifyToggled == false then
+		NToggled = false
+	end
 end)
 
-section1:addKeybind("ToggleKeybind", Enum.KeyCode.P, function()
-print("Activated Keybind")
-venyx:toggle()
-end, function()
+UICorner_2.CornerRadius = UDim.new(0, 5)
+UICorner_2.Parent = NotifyToggle
+
+GrabGun.Name = "GrabGun"
+GrabGun.Parent = CheatsPage
+GrabGun.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+GrabGun.BorderSizePixel = 0
+GrabGun.Position = UDim2.new(0.170000002, 0, 0.770270228, 0)
+GrabGun.Size = UDim2.new(0, 131, 0, 34)
+GrabGun.Font = Enum.Font.Ubuntu
+GrabGun.Text = "Grab Gun"
+GrabGun.TextColor3 = Color3.fromRGB(178, 178, 178)
+GrabGun.TextSize = 14.000
+GrabGun.MouseButton1Down:Connect(function()
+	if game.Workspace:FindFirstChild("GunDrop") then
+		guncurrentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		wait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.GunDrop.CFrame
+
+		wait(1)
+
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = guncurrentpos
+	end
 end)
 
--- universal page
-local page = venyx:addPage("Main", 5012544693)
-local section1 = page:addSection("Teleport Functions")
-local section2 = page:addSection("Features")
-local section3 = page:addSection("Modules")
-
-section1:addButton("Save Location", function()
-    currentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+PlayerButton.Name = "PlayerButton"
+PlayerButton.Parent = InsideContainer
+PlayerButton.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+PlayerButton.BorderSizePixel = 0
+PlayerButton.Position = UDim2.new(0.572072029, 0, 0.299168974, 0)
+PlayerButton.Size = UDim2.new(0, 56, 0, 22)
+PlayerButton.Font = Enum.Font.Ubuntu
+PlayerButton.Text = "Player"
+PlayerButton.TextColor3 = Color3.fromRGB(178, 178, 178)
+PlayerButton.TextSize = 14.000
+PlayerButton.MouseButton1Down:Connect(function()
+	if PlayerPage.Visible == false then
+		PlayerPage.Visible = true
+		CheatsPage.Visible = false
+	end
 end)
 
-section1:addButton("Load Location", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentpos
+PlayerPage.Name = "PlayerPage"
+PlayerPage.Parent = PlayerButton
+PlayerPage.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+PlayerPage.BorderSizePixel = 0
+PlayerPage.Position = UDim2.new(-2.07142854, 0, 1, 0)
+PlayerPage.Size = UDim2.new(0, 200, 0, 222)
+PlayerPage.Visible = false
+
+Walkspeed.Name = "Walkspeed"
+Walkspeed.Parent = PlayerPage
+Walkspeed.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Walkspeed.BorderSizePixel = 0
+Walkspeed.Position = UDim2.new(0.155000001, 0, 0.0495495498, 0)
+Walkspeed.Size = UDim2.new(0, 131, 0, 34)
+Walkspeed.Font = Enum.Font.Ubuntu
+Walkspeed.PlaceholderText = "Input Walkspeed..."
+Walkspeed.Text = ""
+Walkspeed.TextColor3 = Color3.fromRGB(178, 178, 178)
+Walkspeed.TextSize = 14.000
+Walkspeed.FocusLost:Connect(function(enterPressed)
+	if enterPressed then
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed.Text
+	end
 end)
 
-section2:addButton("Load ESP", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Zodiac/main/PLAYER_ESP"))()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Zodiac/main/GUN_ESP"))()
+Jumppower.Name = "Jumppower"
+Jumppower.Parent = PlayerPage
+Jumppower.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Jumppower.BorderSizePixel = 0
+Jumppower.Position = UDim2.new(0.155000001, 0, 0.252252251, 0)
+Jumppower.Size = UDim2.new(0, 131, 0, 34)
+Jumppower.Font = Enum.Font.Ubuntu
+Jumppower.PlaceholderText = "Input Jumppower..."
+Jumppower.Text = ""
+Jumppower.TextColor3 = Color3.fromRGB(178, 178, 178)
+Jumppower.TextSize = 14.000
+Jumppower.FocusLost:Connect(function(enterPressed)
+	if enterPressed then
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jumppower.Text
+	end
 end)
 
-section2:addButton("Grab Gun", function()
-    if game.Workspace:FindFirstChild("GunDrop") then
-        guncurrentpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.GunDrop.CFrame
+Noclip.Name = "Noclip"
+Noclip.Parent = PlayerPage
+Noclip.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Noclip.BorderSizePixel = 0
+Noclip.Position = UDim2.new(0.155000001, 0, 0.459459454, 0)
+Noclip.Size = UDim2.new(0, 131, 0, 34)
+Noclip.AutoButtonColor = false
+Noclip.Font = Enum.Font.Ubuntu
+Noclip.Text = "          Noclip"
+Noclip.TextColor3 = Color3.fromRGB(178, 178, 178)
+Noclip.TextSize = 14.000
+Noclip.TextXAlignment = Enum.TextXAlignment.Left
+noclip = false
 
-        wait(1)
-                
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = guncurrentpos
-    end
+NoclipToggle.Name = "NoclipToggle"
+NoclipToggle.Parent = Noclip
+NoclipToggle.BackgroundColor3 = Color3.fromRGB(255, 20, 20)
+NoclipToggle.BorderSizePixel = 0
+NoclipToggle.Position = UDim2.new(0.748091578, 0, 0.147058964, 0)
+NoclipToggle.Size = UDim2.new(0, 24, 0, 23)
+NoclipToggle.Font = Enum.Font.SourceSans
+NoclipToggle.Text = ""
+NoclipToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+NoclipToggle.TextSize = 14.000
+game:GetService('RunService').Stepped:connect(function()
+	if noclip then
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+	end
+end)
+NoclipToggle.MouseButton1Down:Connect(function()
+	noclip = not noclip
+	if NoclipToggled == false then
+		NoclipToggled = true
+		NoclipToggle.BackgroundColor3 = Color3.fromRGB(77, 202, 82)
+	else
+		NoclipToggled = false
+		NoclipToggle.BackgroundColor3 = Color3.fromRGB(255, 32, 32)
+	end
 end)
 
-section2:addToggle("GunDropped Notify", nil, function(value)
-    if value == true then
-        NToggled = true
-        while true do
-            wait()
-            if NToggled == true then
-                if game.Workspace:FindFirstChild("GunDrop") then
-                    if Notified == false then
-                        game.StarterGui:SetCore("SendNotification", {
-                        Title = "Sheriff Dead";
-                        Text =  "The Gun has Dropped";
-                        Duration = 5;
-                        })
-                        
-                        Notified = true
-                        wait()
-                    end
-                else    
-                    Notified = false
-                end
-            end
-        end
-    end
+UICorner_3.CornerRadius = UDim.new(0, 5)
+UICorner_3.Parent = NoclipToggle
 
-    if value == false then
-        NToggled = false
-    end
-end)
+TItle.Name = "TItle"
+TItle.Parent = MainContainer
+TItle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TItle.BackgroundTransparency = 1.000
+TItle.Position = UDim2.new(0.100000001, 0, 0.0658227876, 0)
+TItle.Size = UDim2.new(0, 200, 0, 41)
+TItle.Font = Enum.Font.Ubuntu
+TItle.Text = "INSANITY"
+TItle.TextColor3 = Color3.fromRGB(255, 255, 255)
+TItle.TextScaled = true
+TItle.TextSize = 14.000
+TItle.TextWrapped = true
 
-section2:addTextbox("Reveal Player Role", Default, function(value, focusLost)
-    if focusLost then                    
-        if game.Players[value].Backpack:FindFirstChild("Knife") then
-            print(value.. " is the Murderer.")
-        elseif game.Players[value].Backpack:FindFirstChild("Gun") then
-            print(value.. " is the Sheriff.")
-        else
-            print(value.. " is Innocent.")
-        end
-    end
-end)
+Frame.Parent = TItle
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.25, 0, 1, 0)
+Frame.Size = UDim2.new(0, 100, 0, 2)
 
--- Player Options Page
-local page = venyx:addPage("Player", 5012544693)
-local section1 = page:addSection("Humanoid Values")
-local section2 = page:addSection("Humanoid Options")
-
-section1:addSlider("Walkspeed", 16, 0, 50, function(value)
-	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
-end)
-
-section1:addSlider("JumpPower", 16, 0, 50, function(value)
-	game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
-end)
-
-section2:addButton("Noclip [Keybind: V]", function()
-    game:getService("RunService"):BindToRenderStep("",0,function()
-        if not game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid") then return end
-        if game:getService("UserInputService"):IsKeyDown(Enum.KeyCode.V) then
-        game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid"):ChangeState(11)
-        end
-    end)
-end)
-
--- Credits page
-local page = venyx:addPage("Credits", 5012544693)
-local section1 = page:addSection("Scripter & UI")
-
-section1:addButton("Scripts by Menace#1337", function()
-
-end)
-
-section1:addButton("UI Library used: Venyx", function()
-
-end)
-
--- Themes
-local theme = venyx:addPage("Theme", 5012544693)
-local colors = theme:addSection("Colors")
-
-for theme, color in pairs(themes) do
-colors:addColorPicker(theme, color, function(color3)
-venyx:setTheme(theme, color3)
-end)
-end
-
--- load
-venyx:SelectPage(venyx.pages[1], true)
+MainContainer:TweenSize(UDim2.new(0, 250,0, 395), "InOut", "Linear", 0.1)
